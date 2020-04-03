@@ -1,17 +1,19 @@
-ratio_deaths_cases <- function(wtd_incid, deaths, nsamples, window = 7) {
+ratio_deaths_cases <- function(wtd_incid, deaths, nsamples, twindow = 7) {
+
+    r_t <- array(
+        NA,
+        dim = c(nrow(wtd_incid), nsamples)
+    )
 
     for (idx in seq_len(nrow(wtd_incid))) {
 
-        f <- seq(max(c(1, idx - window)), idx)
-        r_t <- array(
-            NA,
-            dim = c(nrow(wtd_incid), nsamples)
-        )
+        fidx <- seq(max(c(1, idx - twindow)), idx)
 
-        if (sum(wtd_incid[f,]) > 0) {
-            hpd <- binom.bayes(
-                x = sum(deaths[f, ]),
-                n = sum(wtd_incid[f, ]),
+        if (sum(wtd_incid[fidx,]) > 0) {
+
+            hpd <- binom::binom.bayes(
+                x = sum(deaths[fidx, ]),
+                n = sum(wtd_incid[fidx, ]),
                 type = "central",
                 conf.level = 0.95,
                 tol = 1e-9

@@ -8,7 +8,7 @@
 ##' to death delay
 ##' @return
 ##' @author Sangeeta Bhatia
-weighted_incid <- function(incid, weights) {
+weighted_incid <- function(incid, weights, trunc) {
 
     ndays <- nrow(incid)
     ## how far back do you want to go.
@@ -25,8 +25,13 @@ weighted_incid <- function(incid, weights) {
     out <- matrix(NA, nrow = ndays, ncol = 1)
 
     for (idx in seq_len(ndays)) {
-
-        out[idx, ] <- utils::tail(weights, idx) %*% incid[seq_len(idx), , drop = FALSE]
+        fidx <- max(
+            c(1, (idx - trunc))
+        )
+        out[idx, ] <- t(
+            t(incid[fidx:idx, ]) %*%
+            weights[((trunc + 1) - (idx - fidx)):(trunc + 1)]
+        )
     }
 
     out

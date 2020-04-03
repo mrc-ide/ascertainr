@@ -28,7 +28,7 @@ true_episize_future <- function(cases, rho) {
         nrow = nrow(cases),
         ncol = nsamples
     )
-    for (idx in seq_len(nrow(i_true)) {
+    for (idx in seq_len(nrow(i_true))) {
 
         i_true[idx, ] <- cases[idx, ] +
             rnbinom(
