@@ -10,7 +10,7 @@ true_episize_past <- function(deaths, mu_delta, cfr_distr) {
     f <- seq(1, nrow(deaths) - mu_delta)
     for (idx in f) {
         i_true[idx, ] <- deaths[idx + mu_delta, ] +
-            rnbinom(
+            stats::rnbinom(
                 n = nsamples,
                 size = deaths[idx + mu_delta, ],
                 prob = cfr_distr
@@ -31,7 +31,7 @@ true_episize_future <- function(cases, rho) {
     for (idx in seq_len(nrow(i_true))) {
 
         i_true[idx, ] <- cases[idx, ] +
-            rnbinom(
+            stats::rnbinom(
                 n = nsamples,
                 size = cases[idx, ],
                 prob = rho[idx, ]

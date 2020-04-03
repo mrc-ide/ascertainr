@@ -18,7 +18,7 @@ ratio_deaths_cases <- function(wtd_incid, deaths, nsamples, twindow = 7) {
                 conf.level = 0.95,
                 tol = 1e-9
             )
-            r_t[idx, ] <- rbeta(
+            r_t[idx, ] <- stats::rbeta(
                 n = nsamples,
                 shape1 = hpd$shape1,
                 shape2 = hpd$shape2

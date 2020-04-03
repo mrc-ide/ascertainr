@@ -33,9 +33,5 @@ weighted_incid <- function(incid, weights, trunc) {
             weights[((trunc + 1) - (idx - fidx)):(trunc + 1)]
         )
     }
-
     out
-
-
-
 }
