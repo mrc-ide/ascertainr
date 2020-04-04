@@ -1,4 +1,4 @@
-ratio_deaths_cases <- function(wtd_incid, deaths, nsamples, twindow = 7) {
+ratio_deaths_cases <- function(wtd_incid, deaths, nsamples = 10000, twindow = 7) {
 
     r_t <- array(
         NA,
