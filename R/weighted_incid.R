@@ -11,15 +11,6 @@
 weighted_incid <- function(incid, weights, trunc) {
 
     ndays <- nrow(incid)
-    ## how far back do you want to go.
-    trunc <- length(weights)
-
-    if (trunc < ndays) {
-        less <- ndays - trunc
-        weights <- c(rep(0, less), weights)
-    } else {
-        weights <- weights[seq_len(ndays)]
-    }
     weights <- rev(weights)
 
     out <- matrix(NA, nrow = ndays, ncol = 1)
@@ -28,10 +19,8 @@ weighted_incid <- function(incid, weights, trunc) {
         fidx <- max(
             c(1, (idx - trunc))
         )
-        out[idx, ] <- t(
-            t(incid[fidx:idx, ]) %*%
+        out[idx, 1] <- t(incid[fidx:idx, ]) %*%
             weights[((trunc + 1) - (idx - fidx)):(trunc + 1)]
-        )
     }
     out
 }
