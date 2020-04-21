@@ -9,18 +9,17 @@
 ##' @return
 ##' @author Sangeeta Bhatia
 weighted_incid <- function(incid, weights, trunc) {
+  ndays <- nrow(incid)
+  weights <- rev(weights)
 
-    ndays <- nrow(incid)
-    weights <- rev(weights)
+  out <- matrix(NA, nrow = ndays, ncol = 1)
 
-    out <- matrix(NA, nrow = ndays, ncol = 1)
-
-    for (idx in seq_len(ndays)) {
-        fidx <- max(
-            c(1, (idx - trunc))
-        )
-        out[idx, 1] <- t(incid[fidx:idx, ]) %*%
-            weights[((trunc + 1) - (idx - fidx)):(trunc + 1)]
-    }
-    out
+  for (idx in seq_len(ndays)) {
+    fidx <- max(
+      c(1, (idx - trunc))
+    )
+    out[idx, 1] <- t(incid[fidx:idx, ]) %*%
+      weights[((trunc + 1) - (idx - fidx)):(trunc + 1)]
+  }
+  out
 }
