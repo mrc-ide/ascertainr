@@ -14,7 +14,7 @@ weighted_incid(incid, weights, trunc)
 to death delay}
 }
 \value{
-
+T X 1 matrix incidence weighted by the delay distribution.
 }
 \description{
 Returns

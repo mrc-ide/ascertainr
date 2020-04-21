@@ -1,3 +1,14 @@
+#' Estimate ratio if deaths to reported cases
+#'
+#' @param wtd_incid 
+#' @param deaths 
+#' @param nsamples 
+#' @param twindow 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ratio_deaths_cases <- function(wtd_incid, deaths, nsamples = 10000, twindow = 7) {
   r_t <- array(
     NA,

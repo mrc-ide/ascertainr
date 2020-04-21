@@ -1,3 +1,12 @@
+#' Estimate case ascertainment ratio
+#'
+#' @param cfr_distr 
+#' @param death_to_case 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ascertainment <- function(cfr_distr, death_to_case) {
   rho <- array(NA, dim = dim(death_to_case))
 

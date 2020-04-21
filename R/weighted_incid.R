@@ -6,7 +6,8 @@
 ##' @param incid incidence time series as a T X 1 matrix
 ##' @param weights Discrete probability distribution of the reporting
 ##' to death delay
-##' @return
+##' @return T X 1 matrix incidence weighted by the delay distribution. 
+##' @export
 ##' @author Sangeeta Bhatia
 weighted_incid <- function(incid, weights, trunc) {
   ndays <- nrow(incid)
